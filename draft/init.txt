@@ -1,0 +1,3 @@
+This folder contains draft.
+
+Move files to published when they are given in platforms. 
