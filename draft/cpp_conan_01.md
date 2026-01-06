@@ -4,14 +4,14 @@ Conan 是一个开源的 C/C++ **包管理器**（Package Manager），专为现
 
 ## 核心特性
 
-1. **跨平台 & 多配置支持**  
+1. 跨平台 & 多配置支持
    Conan 支持 Windows、Linux、macOS、嵌入式系统等，可同时管理多个编译器、架构、标准库（如 libc++ vs libstdc++）、构建类型（Debug/Release）等配置，通过 **settings** 和 **options** 精细控制包变体。
 
-2. **中心化或去中心化仓库**  
+2. 中心化或去中心化仓库
    - 默认使用 [ConanCenter](https://conan.io/center/)（社区维护的中央仓库，包含数千个常用 C++ 库如 Boost、OpenSSL、fmt、spdlog 等）。
    - 也支持私有仓库（如 JFrog Artifactory、Conan Server），适合企业内网部署。
 
-3. **声明式依赖管理**  
+3. 声明式依赖管理
    通过 `conanfile.txt`（简单场景）或 `conanfile.py`（高级定制）声明依赖，例如：
    ```txt
    [requires]
@@ -23,13 +23,13 @@ Conan 是一个开源的 C/C++ **包管理器**（Package Manager），专为现
    CMakeToolchain
    ```
 
-4. **与构建系统深度集成**  
+4. 与构建系统深度集成
    支持 CMake、Meson、MSBuild、Makefile 等，通过 **generators** 自动生成集成文件（如 `conan install` 会生成 `conan_toolchain.cmake` 和 `*-config.cmake`），使 CMake 能直接 `find_package(fmt)`。
 
-5. **二进制缓存 & 复用**  
+5. 二进制缓存 & 复用
    Conan 默认优先下载预编译的二进制包（binary package），若不存在则根据 recipe 从源码构建并缓存，极大加速 CI/CD 流程。
 
-6. **可定制的包配方（Recipe）**  
+6. 可定制的包配方（Recipe）
    每个包由 `conanfile.py` 定义如何获取源码、配置、构建、打包，支持条件逻辑、钩子、测试等，适合复杂构建流程。
 
 ## 与 vcpkg、Hunter 等对比的优势
@@ -112,11 +112,10 @@ tools.cmake.cmaketoolchain:generator=Ninja
 验证方式 `conan profile show --profile gcc-11-ninja`
 
 
-## create a project
+## 如何创建一个简单的项目
 
 `mkdir cpp_ws && cd cpp_ws`
-`conan new cmake_exe -d name=my_project -d version=0.1`
-`conan new bazel_exe -d name=my_project -d version=0.1`
+`conan new cmake_exe -d name=my_project -d version=0.1 # use cmake`
+`conan new bazel_exe -d name=my_project -d version=0.1 # use bazel`
 
-setup project
-`conan install . --profile=gcc-11-ninja --output-folder=build --build=missing`
+Setup project `conan install . --profile=gcc-11-ninja --output-folder=build --build=missing`
